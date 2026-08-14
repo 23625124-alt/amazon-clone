@@ -3,15 +3,14 @@ import express from "express";
 import {
   getProducts,
   getProductById,
-  createProduct,
 } from "../controllers/productController.js";
 
 const router = express.Router();
 
+// Get all products
 router.get("/", getProducts);
 
+// Get single product
 router.get("/:id", getProductById);
-
-router.post("/", createProduct);
 
 export default router;

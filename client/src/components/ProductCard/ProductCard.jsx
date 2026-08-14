@@ -1,55 +1,54 @@
+import { useNavigate } from "react-router-dom";
+
 function ProductCard({ product }) {
+  const navigate = useNavigate();
+
+  const openProduct = () => {
+    navigate(`/product/${product._id}`);
+  };
+
   return (
     <div
       style={{
         backgroundColor: "white",
+        width: "250px",
         padding: "20px",
         borderRadius: "8px",
         boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-        textAlign: "center",
+        cursor: "pointer",
       }}
+      onClick={openProduct}
     >
       <img
         src={product.image}
         alt={product.name}
         style={{
-          width: "180px",
-          height: "180px",
+          width: "100%",
+          height: "220px",
           objectFit: "contain",
         }}
       />
 
-      <h3
-        style={{
-          fontSize: "17px",
-          margin: "15px 0",
-        }}
-      >
-        {product.name}
-      </h3>
+      <h3>{product.name}</h3>
 
-      <p style={{ margin: "8px 0" }}>
-        ⭐⭐⭐⭐⭐
-      </p>
+      <p>⭐ {product.rating}</p>
 
-      <p
-        style={{
-          fontSize: "22px",
-          fontWeight: "bold",
-          margin: "10px",
-        }}
-      >
-        ₹{product.price.toLocaleString("en-IN")}
-      </p>
+      <p>{product.description}</p>
+
+      <h2>₹{product.price}</h2>
 
       <button
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
         style={{
-          backgroundColor: "#ffd814",
-          border: "1px solid #fcd200",
-          padding: "10px 25px",
+          width: "100%",
+          padding: "12px",
+          border: "none",
           borderRadius: "20px",
+          backgroundColor: "#ffd814",
           cursor: "pointer",
-          fontWeight: "500",
+          fontWeight: "bold",
         }}
       >
         Add to Cart

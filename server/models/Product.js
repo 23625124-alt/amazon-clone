@@ -24,17 +24,17 @@ const productSchema = new mongoose.Schema(
 
     description: {
       type: String,
-      default: "",
+      required: true,
     },
 
     rating: {
       type: Number,
-      default: 4,
+      default: 0,
     },
 
     stock: {
       type: Number,
-      default: 10,
+      default: 0,
     },
   },
   {
