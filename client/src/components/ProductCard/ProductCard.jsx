@@ -1,10 +1,20 @@
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../cart/CartContext";
 
 function ProductCard({ product }) {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const openProduct = () => {
     navigate(`/product/${product._id}`);
+  };
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+
+    addToCart(product, 1);
+
+    alert(`${product.name} added to cart!`);
   };
 
   return (
@@ -38,9 +48,7 @@ function ProductCard({ product }) {
       <h2>₹{product.price}</h2>
 
       <button
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
+        onClick={handleAddToCart}
         style={{
           width: "100%",
           padding: "12px",
